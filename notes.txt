@@ -6,7 +6,6 @@ Run the project
 
 Open a terminal and run:
 
-cd /Users/udayapragnagangavaram/Pes/Sem6/OOAD/poolu
 ./mvnw spring-boot:run
 
 Then open this in the browser:
