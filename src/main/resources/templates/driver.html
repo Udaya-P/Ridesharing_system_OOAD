@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Driver</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="driver-page">
+<main class="driver-layout">
+    <section class="driver-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow">Driver Onboarding</p>
+        <h1>Register a Driver</h1>
+        <p class="hero-copy">Create a driver profile, attach vehicle details, and store the live pickup location in one clean step.</p>
+        <div class="hero-badges">
+            <span>Fast setup</span>
+            <span>Vehicle linked</span>
+            <span>Ready for pooling</span>
+        </div>
+    </section>
+
+    <section class="driver-card">
+        <form id="driver-form" class="driver-form">
+            <div class="form-section">
+                <h2>Driver Details</h2>
+                <div class="form-grid">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" placeholder="Rahul" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="rahul@example.com" required>
+                    </label>
+                    <label>
+                        <span>Phone</span>
+                        <input type="text" name="phone" placeholder="9876543210" required>
+                    </label>
+                    <label>
+                        <span>License Number</span>
+                        <input type="text" name="licenseNumber" placeholder="DL12345" required>
+                    </label>
+                    <label class="checkbox-row">
+                        <input type="checkbox" name="isAvailable" checked>
+                        <span>Available for rides</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Vehicle Info</h2>
+                <div class="form-grid">
+                    <label>
+                        <span>Make</span>
+                        <input type="text" name="vehicleMake" placeholder="Honda" required>
+                    </label>
+                    <label>
+                        <span>Model</span>
+                        <input type="text" name="vehicleModel" placeholder="City" required>
+                    </label>
+                    <label>
+                        <span>Plate Number</span>
+                        <input type="text" name="plateNumber" placeholder="KA01AB1234" required>
+                    </label>
+                    <label>
+                        <span>Seats</span>
+                        <input type="number" name="seats" min="1" placeholder="4" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Current Location</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Address</span>
+                        <input type="text" name="address" placeholder="MG Road, Bengaluru" required>
+                    </label>
+                    <label>
+                        <span>Latitude</span>
+                        <input type="number" name="latitude" step="any" placeholder="12.975" required>
+                    </label>
+                    <label>
+                        <span>Longitude</span>
+                        <input type="number" name="longitude" step="any" placeholder="77.605" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Register Driver</button>
+                <p id="driver-message" class="status-message" aria-live="polite"></p>
+            </div>
+        </form>
+    </section>
+</main>
+<script th:src="@{/js/driver.js}" src="/js/driver.js"></script>
+</body>
+</html>

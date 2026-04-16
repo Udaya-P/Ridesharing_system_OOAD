@@ -1,0 +1,349 @@
+PoolU Project Notes
+===================
+
+Run the project
+---------------
+
+Open a terminal and run:
+
+cd /Users/udayapragnagangavaram/Pes/Sem6/OOAD/poolu
+./mvnw spring-boot:run
+
+Then open this in the browser:
+
+http://localhost:8081
+
+To stop the server, press Ctrl + C in the terminal.
+
+
+Requirements
+------------
+
+The project is a Spring Boot Maven project.
+
+The pom.xml sets:
+
+Java version: 17
+
+Your machine currently has Java 25 installed, and the project test run worked with it.
+
+I verified the project with:
+
+./mvnw test
+
+Result:
+
+BUILD SUCCESS
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+
+Main pages
+----------
+
+After running the app, open these pages:
+
+Home:
+http://localhost:8081/
+
+Register Driver:
+http://localhost:8081/register-driver
+
+Register Pooler:
+http://localhost:8081/register-pooler
+
+Create Pool:
+http://localhost:8081/create-pool
+
+View Pools / Join Pool:
+http://localhost:8081/pools
+
+Pricing:
+http://localhost:8081/pricing
+
+Add Review:
+http://localhost:8081/add-review
+
+
+Database
+--------
+
+This project uses an H2 in-memory database.
+
+Open:
+
+http://localhost:8081/h2-console
+
+Use these values:
+
+JDBC URL: jdbc:h2:mem:pooldb
+User Name: sa
+Password: leave blank
+
+Then click Connect.
+
+Important:
+
+The database is in-memory, so it resets every time the app stops and starts again.
+
+The config in src/main/resources/application.properties has:
+
+spring.jpa.hibernate.ddl-auto=create-drop
+app.seed.enabled=true
+
+This means the database tables are recreated on startup, and sample data is inserted every time.
+
+
+SQL queries to view data
+------------------------
+
+Run these in the H2 console:
+SELECT u.USER_ID, u.NAME, u.EMAIL, u.PHONE, u.KARMA_SCORE, d.LICENSE_NUMBER, d.IS_AVAILABLE, d.VEHICLE_ID, d.LOCATION_ID
+FROM USERS u JOIN DRIVERS d  ON u.USER_ID = d.USER_ID;
+SELECT u.USER_ID,u.NAME, u.EMAIL, u.PHONE, u.KARMA_SCORE, p.CURRENT_LOCATION_ID, p.DESTINATION_ID,p.PAYMENT_METHOD
+FROM USERS u JOIN POOLERS p  ON u.USER_ID = p.USER_ID;
+SELECT  p.POOL_ID,p.STATUS,p.CAPACITY, u.USER_ID AS DRIVER_ID,u.NAME AS DRIVER_NAME,u.EMAIL,d.LICENSE_NUMBER,d.IS_AVAILABLE,d.VEHICLE_ID,d.LOCATION_ID
+FROM POOLS p JOIN DRIVERS d ON p.DRIVER_ID = d.USER_ID JOIN USERS u ON d.USER_ID = u.USER_ID;
+SELECT * FROM POOLS;
+SELECT * FROM REVIEWS;
+SELECT * FROM LOCATIONS;
+SELECT * FROM VEHICLES;
+SELECT * FROM POOL_POOLERS;
+SELECT * FROM RIDES;
+SELECT * FROM USERS;
+SELECT * FROM DRIVERS;
+SELECT * FROM POOLERS;
+
+
+Seed data
+---------
+
+The app automatically creates this data on startup:
+
+Driver:
+Rahul
+rahul@example.com
+Phone: 9876543210
+License: DL12345
+Available: true
+Vehicle: Honda City, KA01AB1234, 4 seats
+Location: MG Road, Bengaluru
+
+Pooler 1:
+Ananya
+ananya@example.com
+Phone: 9123456780
+Payment Method: UPI
+Current Location: Indiranagar, Bengaluru
+Destination: Electronic City, Bengaluru
+
+Pooler 2:
+Arjun
+arjun@example.com
+Phone: 9988776655
+Payment Method: Card
+Current Location: Koramangala, Bengaluru
+Destination: Whitefield, Bengaluru
+
+Pool:
+Driver: Rahul
+Origin: BTM Layout, Bengaluru
+Destination: Whitefield, Bengaluru
+Capacity: 3
+Status: OPEN
+
+Review:
+Reviewer: Ananya
+Reviewee: Rahul
+Stars: 5
+Comment: Safe and comfortable ride
+
+Note:
+
+The IDs are generated as UUIDs and change every time the app restarts because the database is recreated.
+
+
+Useful API URLs
+---------------
+
+View available pools:
+
+http://localhost:8081/api/pools
+
+Or use curl:
+
+curl http://localhost:8081/api/pools
+
+View one pool:
+
+http://localhost:8081/api/pools/PASTE_POOL_ID_HERE
+
+Pricing for a pool:
+
+http://localhost:8081/api/pricing/PASTE_POOL_ID_HERE/fare
+http://localhost:8081/api/pricing/PASTE_POOL_ID_HERE/split
+http://localhost:8081/api/pricing/PASTE_POOL_ID_HERE/breakdown
+
+Reviews for a user:
+
+http://localhost:8081/api/reviews/user/PASTE_USER_ID_HERE
+http://localhost:8081/api/reviews/user/PASTE_USER_ID_HERE/karma
+
+
+Main API endpoints
+------------------
+
+Register driver:
+
+POST /api/auth/drivers/register
+
+Register pooler:
+
+POST /api/auth/poolers/register
+
+Login:
+
+POST /api/auth/login
+
+Create pool:
+
+POST /api/pools
+
+Join pool:
+
+POST /api/pools/join
+
+Start pool:
+
+POST /api/pools/{poolId}/start
+
+Complete pool:
+
+POST /api/pools/{poolId}/complete
+
+Get available pools:
+
+GET /api/pools
+
+Get pool by ID:
+
+GET /api/pools/{poolId}
+
+Submit review:
+
+POST /api/reviews
+
+Get reviews for user:
+
+GET /api/reviews/user/{userId}
+
+Get karma score:
+
+GET /api/reviews/user/{userId}/karma
+
+Get fare:
+
+GET /api/pricing/{poolId}/fare
+
+Get fare split:
+
+GET /api/pricing/{poolId}/split
+
+Get price breakdown:
+
+GET /api/pricing/{poolId}/breakdown
+
+
+Recommended demo flow
+---------------------
+
+1. Run the app:
+
+   ./mvnw spring-boot:run
+
+2. Open:
+
+   http://localhost:8081
+
+3. Go to View Pools to see the seeded pool.
+
+4. Open the H2 console:
+
+   http://localhost:8081/h2-console
+
+5. Connect using:
+
+   JDBC URL: jdbc:h2:mem:pooldb
+   User Name: sa
+   Password: leave blank
+
+6. Run:
+
+   SELECT * FROM USERS;
+
+   This gives the driver and pooler user IDs.
+
+7. Use Register Driver or Register Pooler to create new users.
+
+8. Copy the generated user ID shown after registration.
+
+9. Use Create Pool with a driver ID.
+
+10. Use View Pools and enter a pooler ID to join a pool.
+
+11. Use Pricing with a pool ID.
+
+12. Use Add Review with reviewer and reviewee user IDs.
+
+
+Project structure
+-----------------
+
+Main backend code:
+
+src/main/java/com/poolu/poolu
+
+Important backend folders:
+
+src/main/java/com/poolu/poolu/controller
+Web pages and REST APIs.
+
+src/main/java/com/poolu/poolu/model/model
+Entities like User, Driver, Pooler, Pool, Review, Location, Vehicle, Ride.
+
+src/main/java/com/poolu/poolu/repository
+JPA repositories.
+
+src/main/java/com/poolu/poolu/service
+Business logic.
+
+src/main/java/com/poolu/poolu/config
+Security config and seed data.
+
+Frontend templates:
+
+src/main/resources/templates
+
+Frontend CSS:
+
+src/main/resources/static/css/app.css
+
+Frontend JavaScript:
+
+src/main/resources/static/js
+
+Main app config:
+
+src/main/resources/application.properties
+
+
+Important note
+--------------
+
+This folder is not currently a Git repository, so commit history cannot be viewed from here.
+
+To view what exists so far, use:
+
+1. The browser pages.
+2. The H2 console.
+3. The API URLs.
+4. The source files in src/main/java and src/main/resources.

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="pricing-page">
+<main class="pricing-layout">
+    <section class="pricing-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow accent-violet">Pricing Engine</p>
+        <h1>Pool Fare Details</h1>
+        <p class="hero-copy">Enter a pool ID to calculate total fare, split amount, and a detailed price breakdown.</p>
+        <div class="hero-badges violet">
+            <span>Total fare</span>
+            <span>Split per user</span>
+            <span>Distance breakdown</span>
+        </div>
+    </section>
+
+    <section class="pricing-card">
+        <form id="pricing-form" class="driver-form">
+            <div class="form-section">
+                <h2>Lookup Pool Pricing</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Pool ID</span>
+                        <input type="text" name="poolId" id="pricing-pool-id" placeholder="Enter pool ID" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="violet-button">Get Pricing</button>
+                <p id="pricing-message" class="status-message" aria-live="polite"></p>
+            </div>
+        </form>
+
+        <div class="pricing-results" id="pricing-results" hidden>
+            <article class="pricing-result-card">
+                <p class="pool-item-label">Total Fare</p>
+                <h3 id="total-fare">-</h3>
+            </article>
+
+            <article class="pricing-result-card">
+                <p class="pool-item-label">Price Breakdown</p>
+                <pre id="price-breakdown">-</pre>
+            </article>
+
+            <article class="pricing-result-card">
+                <p class="pool-item-label">Fare Split</p>
+                <pre id="fare-split">-</pre>
+            </article>
+        </div>
+    </section>
+</main>
+<script th:src="@{/js/pricing.js}" src="/js/pricing.js"></script>
+</body>
+</html>

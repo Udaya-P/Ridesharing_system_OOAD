@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karma Calculator</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="karma-page">
+<main class="karma-layout">
+    <section class="karma-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow accent-emerald">Karma Meter</p>
+        <h1>Karma Calculator</h1>
+        <p class="hero-copy">Enter any user ID to see the current karma score based on the reviews already submitted for that person.</p>
+        <div class="hero-badges emerald">
+            <span>Review based</span>
+            <span>Instant lookup</span>
+            <span>Transparent score</span>
+        </div>
+    </section>
+
+    <section class="karma-card">
+        <form id="karma-form" class="driver-form">
+            <div class="form-section">
+                <h2>Find Karma Score</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>User ID</span>
+                        <input type="text" id="karma-user-id" name="userId" placeholder="Enter userId" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="emerald-button">Calculate Karma</button>
+                <p id="karma-message" class="status-message" aria-live="polite"></p>
+            </div>
+        </form>
+
+        <div id="karma-result-card" class="karma-result-card hidden">
+            <p class="pool-item-label">Calculated Karma Score</p>
+            <h2 id="karma-score-value">0.00</h2>
+            <p id="karma-score-caption" class="hero-copy">Based on the reviews available for this user.</p>
+        </div>
+    </section>
+</main>
+<script th:src="@{/js/karma.js}" src="/js/karma.js"></script>
+</body>
+</html>

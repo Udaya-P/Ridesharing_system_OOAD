@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Pool</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="pool-page">
+<main class="pool-layout">
+    <section class="pool-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow accent-amber">Pool Builder</p>
+        <h1>Create a Pool</h1>
+        <p class="hero-copy">Link a registered driver, set the route, and publish a pool that riders can join immediately.</p>
+        <div class="hero-badges amber">
+            <span>Driver-linked</span>
+            <span>Route-ready</span>
+            <span>Status managed</span>
+        </div>
+    </section>
+
+    <section class="pool-card">
+        <form id="pool-form" class="driver-form">
+            <div class="form-section">
+                <h2>Driver</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Driver ID</span>
+                        <input type="text" name="driverId" placeholder="Enter driver userId" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Origin</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Address</span>
+                        <input type="text" name="originAddress" placeholder="BTM Layout, Bengaluru" required>
+                    </label>
+                    <label>
+                        <span>Latitude</span>
+                        <input type="number" name="originLatitude" step="any" placeholder="12.916" required>
+                    </label>
+                    <label>
+                        <span>Longitude</span>
+                        <input type="number" name="originLongitude" step="any" placeholder="77.610" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Destination</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Address</span>
+                        <input type="text" name="destinationAddress" placeholder="Whitefield, Bengaluru" required>
+                    </label>
+                    <label>
+                        <span>Latitude</span>
+                        <input type="number" name="destinationLatitude" step="any" placeholder="12.969" required>
+                    </label>
+                    <label>
+                        <span>Longitude</span>
+                        <input type="number" name="destinationLongitude" step="any" placeholder="77.750" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="amber-button">Create Pool</button>
+                <p id="pool-message" class="status-message" aria-live="polite"></p>
+            </div>
+        </form>
+    </section>
+</main>
+<script th:src="@{/js/create-pool.js}" src="/js/create-pool.js"></script>
+</body>
+</html>

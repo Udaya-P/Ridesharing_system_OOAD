@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Pools</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="pools-page">
+<main class="pools-layout">
+    <section class="pools-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow accent-sky">Pool Explorer</p>
+        <h1>Available Pools</h1>
+        <p class="hero-copy">Browse live pools, inspect route details, and track each pool's status and occupancy at a glance.</p>
+        <div class="hero-badges sky">
+            <span>Live status</span>
+            <span>Seat tracking</span>
+            <span>Driver linked</span>
+        </div>
+    </section>
+
+    <section class="pools-panel">
+        <div class="pools-panel-header">
+            <h2>Pool List</h2>
+            <button id="refresh-pools" type="button" class="sky-button">Refresh</button>
+        </div>
+        <div class="join-toolbar">
+            <label for="join-pooler-id">Pooler ID</label>
+            <input id="join-pooler-id" type="text" placeholder="Enter pooler ID to join a pool">
+        </div>
+        <p id="pools-message" class="status-message pending">Loading pools...</p>
+        <div id="pools-list" class="pools-grid"></div>
+    </section>
+</main>
+<div id="join-success-toast" class="toast-notice" role="status" aria-live="polite" aria-hidden="true"></div>
+<script th:src="@{/js/pools.js}" src="/js/pools.js"></script>
+</body>
+</html>

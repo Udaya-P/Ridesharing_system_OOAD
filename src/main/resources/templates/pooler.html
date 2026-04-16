@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Pooler</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="pooler-page">
+<main class="pooler-layout">
+    <section class="pooler-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow accent-rose">Pooler Onboarding</p>
+        <h1>Register a Pooler</h1>
+        <p class="hero-copy">Capture the rider profile, pickup point, and destination so they can join matching pools instantly.</p>
+        <div class="hero-badges rose">
+            <span>Quick sign-up</span>
+            <span>Route-ready</span>
+            <span>Payment saved</span>
+        </div>
+    </section>
+
+    <section class="pooler-card">
+        <form id="pooler-form" class="driver-form">
+            <div class="form-section">
+                <h2>Pooler Details</h2>
+                <div class="form-grid">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" placeholder="Ananya" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="ananya@example.com" required>
+                    </label>
+                    <label>
+                        <span>Phone</span>
+                        <input type="text" name="phone" placeholder="9123456780" required>
+                    </label>
+                    <label>
+                        <span>Payment Method</span>
+                        <input type="text" name="paymentMethod" placeholder="UPI" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Current Location</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Address</span>
+                        <input type="text" name="currentAddress" placeholder="Indiranagar, Bengaluru" required>
+                    </label>
+                    <label>
+                        <span>Latitude</span>
+                        <input type="number" name="currentLatitude" step="any" placeholder="12.978" required>
+                    </label>
+                    <label>
+                        <span>Longitude</span>
+                        <input type="number" name="currentLongitude" step="any" placeholder="77.640" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Destination</h2>
+                <div class="form-grid">
+                    <label class="full-span">
+                        <span>Address</span>
+                        <input type="text" name="destinationAddress" placeholder="Electronic City, Bengaluru" required>
+                    </label>
+                    <label>
+                        <span>Latitude</span>
+                        <input type="number" name="destinationLatitude" step="any" placeholder="12.845" required>
+                    </label>
+                    <label>
+                        <span>Longitude</span>
+                        <input type="number" name="destinationLongitude" step="any" placeholder="77.660" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="rose-button">Register Pooler</button>
+                <p id="pooler-message" class="status-message" aria-live="polite"></p>
+            </div>
+        </form>
+    </section>
+</main>
+<script th:src="@{/js/pooler.js}" src="/js/pooler.js"></script>
+</body>
+</html>

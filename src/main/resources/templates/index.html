@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoolU</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body>
+<main class="page">
+    <h1>PoolU</h1>
+    <p>Choose a page to continue.</p>
+    <nav class="nav-links">
+        <a th:href="@{/register-driver}" href="/register-driver">Register Driver</a>
+        <a th:href="@{/register-pooler}" href="/register-pooler">Register Pooler</a>
+        <a th:href="@{/create-pool}" href="/create-pool">Create Pool</a>
+        <a th:href="@{/pools}" href="/pools">View Pools</a>
+        <a th:href="@{/pricing}" href="/pricing">Pricing</a>
+        <a th:href="@{/add-review}" href="/add-review">Add Review</a>
+        <a th:href="@{/karma}" href="/karma">Karma Calculator</a>
+    </nav>
+</main>
+<script th:src="@{/js/app.js}" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body class="review-page">
+<main class="review-layout">
+    <section class="review-hero">
+        <a class="back-link" th:href="@{/}" href="/">Back to Home</a>
+        <p class="eyebrow accent-violet">Review Center</p>
+        <h1>Add a Review</h1>
+        <p class="hero-copy">Capture post-ride feedback with clear ratings and comments so karma scores stay meaningful and transparent.</p>
+        <div class="hero-badges violet">
+            <span>Fast feedback</span>
+            <span>Driver or pooler</span>
+            <span>Karma ready</span>
+        </div>
+    </section>
+
+    <section class="review-card">
+        <p id="review-context" class="review-context hidden"></p>
+        <form id="review-form" class="driver-form">
+            <div class="form-section">
+                <h2>Review Details</h2>
+                <div class="form-grid">
+                    <label>
+                        <span>Reviewer ID</span>
+                        <input type="text" name="reviewerId" placeholder="Enter reviewer userId" required>
+                    </label>
+                    <label>
+                        <span>Reviewee ID</span>
+                        <input type="text" name="revieweeId" placeholder="Enter reviewee userId" required>
+                    </label>
+                    <label>
+                        <span>Stars</span>
+                        <input type="number" name="stars" min="1" max="5" placeholder="5" required>
+                    </label>
+                    <label class="full-span">
+                        <span>Comment</span>
+                        <input type="text" name="comment" placeholder="Safe and comfortable ride" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="violet-button">Submit Review</button>
+                <p id="review-message" class="status-message" aria-live="polite"></p>
+            </div>
+        </form>
+    </section>
+</main>
+<script th:src="@{/js/review.js}" src="/js/review.js"></script>
+</body>
+</html>
